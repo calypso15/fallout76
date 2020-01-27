@@ -1,9 +1,16 @@
+from django.http import HttpResponse
+from django.template import loader
+
 from .models import Weapon
 
-from django.http import HttpResponse
 
 def index(request):
-	return HttpResponse("Hello, world.")
+    weapon_list = Weapon.objects.all()
+    template = loader.get_template('damage/index.html')
+    context = {
+        'weapon_list': weapon_list,
+    }
+    return HttpResponse(template.render(context, request))
 	
 def detail(request, weapon_id):
 	results = Weapon.objects.filter(id=weapon_id)
