@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+	'shopper.apps.ShopperConfig',
 	'damage.apps.DamageConfig',
     'django.contrib.admin',
     'django.contrib.auth',

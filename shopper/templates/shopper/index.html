@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Index</title>
+    </head>
+    <body>
+        {% if recipe_list %}
+            <ul>
+            {% for recipe in recipe_list %}
+                <li>{{ recipe }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recipes found.</p>
+        {% endif %}
+    </body>
+</html>
