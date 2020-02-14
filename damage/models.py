@@ -17,58 +17,60 @@ class Weapon(models.Model):
 		(TYPE_THROWN, 'Thrown'),
 	)
 	
-	AMMO_NONE = 'none'
-	AMMO_308 = '.308'
-	AMMO_38 = '.38'
-	AMMO_44 = '.44'
-	AMMO_45 = '.45'
-	AMMO_50BALL = '.50 ball'
-	AMMO_50 = '.50'
-	AMMO_10MM = '10mm'
-	AMMO_556 = '5.56mm'
-	AMMO_5MM = '5mm'
-	AMMO_CANNONBALL = 'cannonball'
-	AMMO_SPIKE = 'railway spike'
-	AMMO_SHELL = 'shotgun shell'
-	AMMO_2MMEC = '2mm ec'
-	AMMO_ALIEN = 'alien blaster'
-	AMMO_CRYO = 'cryo cell'
-	AMMO_FUEL = 'fuel'
-	AMMO_FUSIONCELL = 'fusion cell'
-	AMMO_FUSIONCORE = 'fusion core'
-	AMMO_GAMMA = 'gamma'
-	AMMO_PLASMA = 'plasma cartridge'
-	AMMO_PLASMACORE = 'plasma core'
-	AMMO_40MMGRENADE = '40mm grenade'
-	AMMO_MININUKE = 'mini nuke'
-	AMMO_MISSILE = 'missile'
+	AMMO_NONE = 'None'
+	AMMO_5MM = 'Ammo5mm'
+	AMMO_556 = 'Ammo556'
+	AMMO_308 = 'Ammo308Caliber'
+	AMMO_308ULTRACITE = 'Ammo308Caliber_AntiScorchBeast'
+	AMMO_38 = 'Ammo38Caliber'
+	AMMO_10MM = 'Ammo10mm'
+	AMMO_44 = 'Ammo44'
+	AMMO_45 = 'Ammo45Caliber'
+	AMMO_50 = 'Ammo50Caliber'
+	AMMO_50BALL = 'Ammo50CaliberBall'
+	AMMO_SHOTGUNSHELL = 'AmmoShotgunShell'
+	AMMO_2MMEC = 'Ammo2mmEC'
+	AMMO_FUSIONCELL = 'AmmoFusionCell'
+	AMMO_FUSIONCORE = 'AmmoFusionCore'
+	AMMO_GAMMACELL = 'AmmoGammaCell'
+	AMMO_PLASMACARTRIDGE = 'AmmoPlasmaCartridge'
+	AMMO_PLASMACORE = 'AmmoPlasmaCore'
+	AMMO_CRYOCELL = 'AmmoCryoCell'
+	AMMO_ALIENBLASTER = 'AmmoAlienBlaster'
+	AMMO_CANNONBALL = 'AmmoCannonBall'
+	AMMO_RRSPIKE = 'AmmoRRSpike'
+	AMMO_FLAMERFUEL = 'AmmoFlamerFuel'
+	AMMO_40MMGRENADE = 'AmmoGrenadeLauncher'
+	AMMO_MISSILE = 'AmmoMissile'
+	AMMO_MININUKE = 'AmmoFatManMiniNuke'
 	
 	AMMO_TYPES = (
 		(AMMO_NONE, 'None'),
+		(AMMO_5MM, '5mm'),
+		(AMMO_556, '5.56mm'),
 		(AMMO_308, '.308'),
+		(AMMO_308ULTRACITE, '.308 Ultracite'),
 		(AMMO_38, '.38'),
+		(AMMO_10MM, '10mm'),
 		(AMMO_44, '.44'),
 		(AMMO_45, '.45'),
-		(AMMO_50BALL, '.50 ball'),
 		(AMMO_50, '.50'),
-		(AMMO_10MM, '10mm'),
-		(AMMO_556, '5.56mm'),
-		(AMMO_5MM, '5mm'),
-		(AMMO_CANNONBALL, 'Cannonball'),
-		(AMMO_SPIKE, 'Railway Spike'),
-		(AMMO_SHELL, 'Shotgun Shell'),
+		(AMMO_50BALL, '.50 ball'),
+		(AMMO_SHOTGUNSHELL, 'Shotgun Shell'),
 		(AMMO_2MMEC, '2mm EC'),
-		(AMMO_ALIEN, 'Alien Blaster'),
-		(AMMO_CRYO, 'Cryo Cell'),
-		(AMMO_FUEL, 'Fuel'),
 		(AMMO_FUSIONCELL, 'Fusion Cell'),
 		(AMMO_FUSIONCORE, 'Fusion Core'),
-		(AMMO_GAMMA, 'Gamma'),
-		(AMMO_PLASMA, 'Plasma Cartridge'),
+		(AMMO_GAMMACELL, 'Gamma Cell'),
+		(AMMO_PLASMACARTRIDGE, 'Plasma Cartridge'),
 		(AMMO_PLASMACORE, 'Plasma Core'),
+		(AMMO_CRYOCELL, 'Cryo Cell'),
+		(AMMO_ALIENBLASTER, 'Alien Blaster'),
+		(AMMO_CANNONBALL, 'Cannonball'),
+		(AMMO_RRSPIKE, 'Railway Spike'),
+		(AMMO_FLAMERFUEL, 'Flamer Fuel'),
 		(AMMO_40MMGRENADE, '40mm Grenade'),
-		(AMMO_MININUKE, 'Mini Nuke'),
 		(AMMO_MISSILE, 'Missile'),
+		(AMMO_MININUKE, 'Mini Nuke'),
 	)
 
 	name = models.CharField(max_length=64)
@@ -79,7 +81,10 @@ class Weapon(models.Model):
 	automatic = models.BooleanField(default=False)
 	explosive = models.BooleanField(default=False)
 	speed = models.DecimalField(max_digits=4, decimal_places=2)
+	range = models.DecimalField(max_digits=5, decimal_places=2)
 	strength_factor = models.DecimalField(max_digits=3, decimal_places=2)
+	accuracy = models.DecimalField(max_digits=4, decimal_places=2)
+	weight = models.DecimalField(max_digits=4, decimal_places=2)
 
 	def __str__(self):
 		return f"{self.name} (level {self.level})"

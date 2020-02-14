@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Index</title>
-	</head>
-	<body>
-		{% if weapon_list %}
-			<ul>
-			{% for weapon in weapon_list %}
-				<li><a href="/damage/detail/{{ weapon.id }}/">{{ weapon }}</a></li>
-			{% endfor %}
-			</ul>
-		{% else %}
-			<p>No weapons found.</p>
-		{% endif %}
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Index</title>
+    </head>
+    <body>
+        {% if weapon_list %}
+            <ul>
+            {% for weapon in weapon_list %}
+                <li><a href="{% url 'damage:detail' weapon.id %}">{{ weapon }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No weapons found.</p>
+        {% endif %}
+    </body>
 </html>

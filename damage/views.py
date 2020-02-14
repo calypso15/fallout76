@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.template import loader
 
 from .models import Weapon
@@ -6,24 +6,30 @@ from .models import Weapon
 
 def index(request):
     weapon_list = Weapon.objects.all()
-    template = loader.get_template('damage/index.html')
+    
     context = {
         'weapon_list': weapon_list,
     }
-    return HttpResponse(template.render(context, request))
-	
+    
+    return render(request, 'damage/index.html', context)
+    
 def detail(request, weapon_id):
-	results = Weapon.objects.filter(id=weapon_id)
-	
-	if(len(results) == 0):
-		return HttpResponse("No matches.")
-	
-	if(len(results) > 1):
-		return HttpResponse("Multiple matches.")
-		
-	weapon = results[0]
-	
-	return HttpResponse(f"{ weapon.name } (level { weapon.level }). { weapon.damage * weapon.speed } DPS.")
-	
-def compare(request, weapon_id_1, weapon_id_2):
-	return HttpResponse(f"You're are comparing weapons { weapon_id_1 } and { weapon_id_2 }.")
+    weapon = Weapon.objects.get(id=weapon_id)
+        
+    context = {
+        'weapon': weapon,
+        'weapon_dps': weapon.damage * weapon.speed,
+    }
+
+    return render(request, 'damage/detail.html', context)
+    
+def compare(request, weapon_id1, weapon_id2):
+    weapon1 = Weapon.objects.get(id=weapon_id1)
+    weapon2 = Weapon.objects.get(id=weapon_id2)
+   
+    context = {
+        'weapon1': weapon1,
+        'weapon2': weapon2,
+    }
+
+    return render(request, 'damage/compare.html', context)
