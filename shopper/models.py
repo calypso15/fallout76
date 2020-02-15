@@ -17,11 +17,12 @@ class Ingredient(models.Model):
 	
 class Recipe(models.Model):
 	name = models.CharField(max_length=64)
+	level = models.PositiveSmallIntegerField()
 	location = models.ManyToManyField(Location)
 	ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient', through_fields=('recipe', 'ingredient'))
 
 	def __str__(self):
-		return f"{self.name}"
+		return f"{self.name} (Level {self.level})"
 		
 class RecipeIngredient(models.Model):
 	recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
